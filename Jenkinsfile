@@ -32,7 +32,9 @@ pipeline {
                 ciPrettyBuildNumber()
 
                 container('git') {
-                    ciBuildEnvVars()
+                    ciWithGitKey(env.rsaKey) {
+                        ciBuildEnvVars()
+                    }
                 }
 
                 container('docker') {
