@@ -11,9 +11,10 @@ pipeline {
 
     environment {
         project="go-demo-4"
-        image="vfarcic/go-demo-4"
-        domain = "acme.com"
-        cmAddr = "cm.acme.com"
+        image="digitalinside/go-demo-4"
+
+        domain = "192.168.0.21.nip.io"
+        cmAddr = "cm.192.168.0.21.nip.io"
 
         rsaKey="go-demo-rsa-key"
         githubToken="github_token"
@@ -90,7 +91,7 @@ pipeline {
                                     name: "release") {
                                 //docker tag
                                 container('docker') {
-                                    ciRetag(env.BUILD_TAG, false, ["latest", env.shortGitCommit, env.RELEASE_TAG])
+                                    ciRetag(env.BUILD_TAG, false, ["latest", env.SHORT_GIT_COMMIT, env.RELEASE_TAG])
                                 }
 
                                 //git tag
